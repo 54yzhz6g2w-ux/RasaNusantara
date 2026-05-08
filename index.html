@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RasaNusantara</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#5C3B1E;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    header{
+      text-align:center;
+      padding:30px;
+      background:#3E2612;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    header h1{
+      font-size:45px;
+      color:#FFD27F;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{ text-shadow:0 0 10px #ffcc66; }
+      to{ text-shadow:0 0 25px #fff2b3; }
+    }
+
+    .hero{
+      height:300px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(to bottom,#6b3f1d,#3E2612);
+    }
+
+    .hero h2{
+      font-size:35px;
+      margin-bottom:10px;
+      z-index:2;
+    }
+
+    .hero p{
+      z-index:2;
+    }
+
+    .food-animation{
+      position:absolute;
+      font-size:45px;
+      animation: float 6s linear infinite;
+      opacity:0.9;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(300px) rotate(0deg);
+      }
+      100%{
+        transform:translateY(-350px) rotate(360deg);
+      }
+    }
+
+    .search-section{
+      padding:20px;
+      text-align:center;
+    }
+
+    input, select{
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      margin:5px;
+      width:250px;
+      font-size:16px;
+    }
+
+    .recipes{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:20px;
+      padding:20px;
+    }
+
+    .card{
+      background:#7A4B28;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 0 15px rgba(0,0,0,0.4);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:scale(1.03);
+    }
+
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:15px;
+    }
+
+    .card h3{
+      color:#FFD27F;
+      margin-bottom:10px;
+    }
+
+    .category{
+      display:inline-block;
+      background:#3E2612;
+      padding:5px 10px;
+      border-radius:10px;
+      margin-bottom:10px;
+      font-size:14px;
+    }
+
+    .favorite-btn{
+      margin-top:10px;
+      background:#FFD27F;
+      color:#3E2612;
+      border:none;
+      padding:10px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .favorite-btn:hover{
+      background:white;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      background:#3E2612;
+      margin-top:30px;
+    }
+
+    ul{
+      margin-left:20px;
+      margin-top:10px;
+    }
+
+    li{
+      margin-bottom:5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍛 RasaNusantara 🍹</h1>
+    <p>Resep Makanan & Minuman Nusantara</p>
+  </header>
+
+  <section class="hero">
+    <div class="food-animation" style="left:10%; animation-delay:0s;">🍜</div>
+    <div class="food-animation" style="left:25%; animation-delay:2s;">🍛</div>
+    <div class="food-animation" style="left:45%; animation-delay:1s;">🍢</div>
+    <div class="food-animation" style="left:65%; animation-delay:3s;">🧋</div>
+    <div class="food-animation" style="left:85%; animation-delay:4s;">🍹</div>
+
+    <h2>Selamat Datang!</h2>
+    <p>Cari resep khas Indonesia dari beberapa daerah </p>
+  </section>
+
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="Cari nama atau daerah...">
+
+    <select id="categoryFilter">
+      <option value="">Semua Kategori</option>
+      <option value="Makanan Berat">Makanan Berat</option>
+      <option value="Makanan Ringan">Makanan Ringan</option>
+      <option value="Minuman">Minuman</option>
+    </select>
+  </section>
+
+  <section class="recipes" id="recipeContainer">
+
+    <!-- RENDANG -->
+    <div class="card" data-name="Rendang Padang Sumatera Barat" data-category="Makanan Berat">
+      <img src="https://images.unsplash.com/photo-1604908176997-4316f5c4b58f?q=80&w=1200&auto=format&fit=crop" alt="Rendang">
+      <div class="card-content">
+        <h3>Rendang</h3>
+        <div class="category">Makanan Berat</div>
+        <p><b>Daerah:</b> Sumatera Barat</p>
+
+        <h4>Bahan:</h4>
+        <ul>
+          <li>Daging sapi</li>
+          <li>Santan</li>
+          <li>Cabai dan rempah</li>
+        </ul>
+
+        <h4>Cara Membuat:</h4>
+        <ul>
+          <li>Tumis bumbu halus.</li>
+          <li>Masukkan santan dan daging.</li>
+          <li>Masak hingga kuah mengering.</li>
+        </ul>
+
+        <button class="favorite-btn" onclick="saveFavorite('Rendang')">
+          ❤️ Favorit
+        </button>
+      </div>
+    </div>
+
+    <!-- PEMPEK -->
+    <div class="card" data-name="Pempek Palembang Sumatera Selatan" data-category="Makanan Ringan">
+      <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1200&auto=format&fit=crop" alt="Pempek">
+      <div class="card-content">
+        <h3>Pempek</h3>
+        <div class="category">Makanan Ringan</div>
+        <p><b>Daerah:</b> Palembang</p>
+
+        <h4>Bahan:</h4>
+        <ul>
+          <li>Ikan tenggiri</li>
+          <li>Tepung sagu</li>
+          <li>Telur</li>
+        </ul>
+
+        <h4>Cara Membuat:</h4>
+        <ul>
+          <li>Campur ikan dan tepung.</li>
+          <li>Bentuk adonan.</li>
+          <li>Rebus lalu goreng.</li>
+        </ul>
+
+        <button class="favorite-btn" onclick="saveFavorite('Pempek')">
+          ❤️ Favorit
+        </button>
+      </div>
+    </div>
+
+    <!-- ES CENDOL -->
+    <div class="card" data-name="Es Cendol Jawa Barat" data-category="Minuman">
+      <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop" alt="Es Cendol">
+      <div class="card-content">
+        <h3>Es Cendol</h3>
+        <div class="category">Minuman</div>
+        <p><b>Daerah:</b> Jawa Barat</p>
+
+        <h4>Bahan:</h4>
+        <ul>
+          <li>Cendol</li>
+          <li>Santan</li>
+          <li>Gula merah</li>
+        </ul>
+
+        <h4>Cara Membuat:</h4>
+        <ul>
+          <li>Rebus gula merah.</li>
+          <li>Siapkan es dan santan.</li>
+          <li>Campurkan semuanya.</li>
+        </ul>
+
+        <button class="favorite-btn" onclick="saveFavorite('Es Cendol')">
+          ❤️ Favorit
+        </button>
+      </div>
+    </div>
+
+    <!-- PAPEDA -->
+    <div class="card" data-name="Papeda Papua" data-category="Makanan Berat">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop" alt="Papeda">
+      <div class="card-content">
+        <h3>Papeda</h3>
+        <div class="category">Makanan Berat</div>
+        <p><b>Daerah:</b> Papua</p>
+
+        <h4>Bahan:</h4>
+        <ul>
+          <li>Sagu</li>
+          <li>Air panas</li>
+          <li>Ikan kuah kuning</li>
+        </ul>
+
+        <h4>Cara Membuat:</h4>
+        <ul>
+          <li>Campur sagu dengan air panas.</li>
+          <li>Aduk hingga lengket.</li>
+          <li>Sajikan dengan ikan.</li>
+        </ul>
+
+        <button class="favorite-btn" onclick="saveFavorite('Papeda')">
+          ❤️ Favorit
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2026 RasaNusantara | Resep Nusantara Indonesia</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const cards = document.querySelectorAll(".card");
+
+    function filterRecipes(){
+      const searchValue = searchInput.value.toLowerCase();
+      const categoryValue = categoryFilter.value;
+
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const category = card.dataset.category;
+
+        const matchSearch = name.includes(searchValue);
+        const matchCategory = categoryValue === "" || category === categoryValue;
+
+        if(matchSearch && matchCategory){
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    searchInput.addEventListener("keyup", filterRecipes);
+    categoryFilter.addEventListener("change", filterRecipes);
+
+    function saveFavorite(recipeName){
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+      if(!favorites.includes(recipeName)){
+        favorites.push(recipeName);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert(recipeName + " ditambahkan ke favorit ❤️");
+      } else {
+        alert(recipeName + " sudah ada di favorit!");
+      }
+    }
+  </script>
+
+</body>
+</html>
